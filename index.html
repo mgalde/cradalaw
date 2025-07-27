@@ -148,37 +148,31 @@
         </section>
 
 
-        <section class="page-section" id="contact">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Contact</h2>
-                    <h3 class="section-subheading text-muted">Ready to discuss your project or get legal advice? Reach out below.</h3>
+        <form action="https://formspree.io/f/your-form-id" method="POST" id="contactForm">
+            <input type="hidden" name="_next" value="https://cradalaw.com/thank-you.html" />
+            <div class="row align-items-stretch mb-5">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" id="name" name="name" type="text" placeholder="Your Name *" required />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="email" name="_replyto" type="email" placeholder="Your Email *" required />
+                    </div>
+                    <div class="form-group mb-md-0">
+                        <input class="form-control" id="phone" name="phone" type="tel" placeholder="Your Phone (optional)" />
+                    </div>
                 </div>
-                <form action="https://formspree.io/f/your-form-id" method="POST">
-                    <div class="row align-items-stretch mb-5">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input class="form-control" type="text" name="name" placeholder="Your Name *" required />
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="email" name="email" placeholder="Your Email *" required />
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="tel" name="phone" placeholder="Your Phone (optional)" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <textarea class="form-control" name="message" rows="6" placeholder="Your Message *" required></textarea>
-                            </div>
-                        </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-textarea mb-md-0">
+                        <textarea class="form-control" id="message" name="message" placeholder="Your Message *" required></textarea>
                     </div>
-                    <div class="text-center">
-                        <button class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </section>
+            <div class="text-center">
+                <button class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
+            </div>
+        </form>
+
 
         <!-- Footer-->
         <footer class="footer py-4">
