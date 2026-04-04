@@ -1047,9 +1047,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (pg) pg.classList.add('active');
     var navLink = document.querySelector('[data-page="' + id + '"]');
     if (navLink) navLink.classList.add('active');
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
   document.querySelectorAll('[data-nav]').forEach(function(el) {
