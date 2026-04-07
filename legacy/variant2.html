@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRADA Law — Sarah Hestad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0F0E0C;
+    --bg-card:  #1C1A16;
+    --ink:      #EDE8DF;
+    --ink-mid:  #B0A99C;
+    --ink-muted:#615D56;
+    --sage:     #C9A84C;
+    --sage-lt:  #3D3018;
+    --border:   #2C2A25;
+    --white:    #EDE8DF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 68px;
+  }
+
+  .nav-wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--ink); }
+
+  /* ── LAYOUT ── */
+  .page { display: none; padding-top: 68px; }
+  .page.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 5%; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 7rem 5% 6rem;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+  }
+
+  .hero-left {}
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-headline em { font-style: italic; }
+
+  .hero-subline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-body {
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    max-width: 420px;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
+  }
+
+  .hero-rule {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .hero-cta {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid var(--sage);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .hero-cta:hover { opacity: 0.65; }
+
+  /* ── SECTION DIVIDER ── */
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 5%;
+  }
+
+  /* ── PILLARS ── */
+  .pillars {
+    padding: 5rem 5%;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .pillars-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .pillar-card {
+    background: var(--white);
+    padding: 2.5rem;
+  }
+
+  .pillar-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .pillar-body {
+    font-size: 0.9rem;
+    color: var(--ink-mid);
+    line-height: 1.8;
+  }
+
+  .pillar-link {
+    display: inline-block;
+    margin-top: 1.75rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 1px solid var(--sage-lt);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+
+  .pillar-link:hover { border-color: var(--sage); }
+
+  /* ── CREDIBILITY BLOCK ── */
+  .credibility {
+    padding: 5rem 5%;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .cred-left {}
+
+  .cred-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 2rem;
+  }
+
+  .cred-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+
+  .cred-heading span {
+    display: block;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cred-heading span:last-child { border-bottom: none; }
+
+  .cred-right {}
+
+  .cred-body {
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+
+  /* ── CONTACT STRIP ── */
+  .contact-strip {
+    background: var(--ink);
+    padding: 4rem 5%;
+    text-align: center;
+  }
+
+  .contact-strip h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.25rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-strip p {
+    font-size: 0.9rem;
+    color: rgba(253,252,250,0.55);
+    margin-bottom: 2rem;
+  }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid rgba(253,252,250,0.35);
+    color: var(--white);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .btn-outline:hover {
+    background: rgba(253,252,250,0.08);
+    border-color: rgba(253,252,250,0.6);
+  }
+
+  /* ── PRACTICE AREAS PAGE ── */
+  .pa-hero {
+    padding: 5rem 5% 4rem;
+    max-width: 1080px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pa-hero-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .pa-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  .practice-section {
+    padding: 4rem 5%;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .practice-section + .practice-section {
+    border-top: 1px solid var(--border);
+  }
+
+  .ps-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .ps-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  .ps-intro {
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+
+  .service-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .service-list li {
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    padding: 0.9rem 0.5rem 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .service-list li::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* ── FAQ ACCORDION ── */
+  .faq-section {
+    margin-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    padding: 1.5rem 0 1rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1.25rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .faq-q:hover { color: var(--sage); }
+
+  .faq-icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    transition: transform 0.3s;
+  }
+
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--ink-muted);
+    border-radius: 1px;
+  }
+
+  .faq-icon::before { width: 12px; height: 1px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .faq-icon::after  { width: 1px; height: 12px; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: transform 0.3s, opacity 0.3s; }
+
+  .faq-item.open .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .faq-a-inner {
+    font-size: 0.9rem;
+    color: var(--ink-mid);
+    line-height: 1.85;
+    padding-bottom: 1.5rem;
+    max-width: 680px;
+  }
+
+  .faq-item.open .faq-a { max-height: 500px; }
+
+  /* ── PA CONTACT PROMPT ── */
+  .pa-contact-prompt {
+    padding: 3.5rem 5%;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .pa-cp-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .pa-cp-text p {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    margin-top: 0.25rem;
+  }
+
+  .btn-sage {
+    display: inline-block;
+    background: var(--sage);
+    color: var(--white);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+  }
+
+  .btn-sage:hover { opacity: 0.85; }
+
+  /* ── CONTACT PAGE ── */
+  .contact-page {
+    padding: 5rem 5% 4rem;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .contact-intro {
+    font-size: 0.9rem;
+    color: var(--ink-mid);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .contact-email-row {
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    margin-bottom: 2rem;
+  }
+
+  .contact-email-row a {
+    color: var(--sage);
+    text-decoration: none;
+    border-bottom: 1px solid var(--sage-lt);
+  }
+
+  .contact-email-row a:hover { border-color: var(--sage); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 0; }
+
+  .form-field { border-bottom: 1px solid var(--border); padding: 0.1rem 0; }
+
+  .form-field:first-child { border-top: 1px solid var(--border); }
+
+  .form-field label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    padding: 0.75rem 0 0.25rem;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    outline: none;
+    padding: 0.25rem 0 0.75rem;
+    resize: none;
+  }
+
+  .form-field textarea { min-height: 100px; }
+
+  .form-submit {
+    margin-top: 1.5rem;
+    display: inline-block;
+    background: var(--ink);
+    color: var(--white);
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.9rem 2.5rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { opacity: 0.8; }
+
+  /* ── BIO SECTION ── */
+  .bio-section {
+    padding: 4rem 5%;
+    max-width: 1080px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .bio-photo-wrap { position: relative; }
+
+  .bio-photo {
+    width: 220px;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    background: var(--bg-card);
+  }
+
+  .bio-photo-placeholder {
+    width: 220px;
+    aspect-ratio: 3/4;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .bio-photo-placeholder span {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-align: center;
+    padding: 0 1rem;
+    line-height: 1.6;
+  }
+
+  .bio-right {}
+
+  .bio-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .bio-title-line {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.75rem;
+  }
+
+  .bio-body {
+    font-size: 0.9rem;
+    color: var(--ink-mid);
+    line-height: 1.9;
+  }
+
+  .bio-body p + p { margin-top: 1rem; }
+
+  .bio-creds {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .cred-block h4 {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .cred-block ul {
+    list-style: none;
+    font-size: 0.85rem;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer p {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  footer a {
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  /* ── VARIANT 2 OVERRIDES: Dark & Authoritative ── */
+  .pillar-number { color: var(--sage); opacity: 0.6; }
+  .pillar-card { background: var(--bg-card); }
+  .pillars-grid { background: var(--border); }
+  .contact-strip { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .contact-strip h2 { color: var(--ink); }
+  .contact-strip p { color: var(--ink-mid); }
+  .btn-outline { border-color: var(--sage); color: var(--sage); }
+  .btn-outline:hover { background: rgba(201,168,76,0.08); border-color: var(--sage); }
+  .btn-sage { background: var(--sage); color: var(--bg); }
+  .form-submit { background: var(--sage); color: var(--bg); }
+  .hero-cta { color: var(--sage); border-bottom-color: var(--sage); }
+  .pillar-link { color: var(--sage); border-bottom-color: var(--sage-lt); }
+  .pillar-link:hover { border-color: var(--sage); }
+  .nav-wordmark { color: var(--ink); }
+  .nav-links a { color: var(--ink-mid); }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+  .faq-q { color: var(--ink); }
+  .faq-q:hover { color: var(--sage); }
+  .faq-icon::before, .faq-icon::after { background: var(--ink-muted); }
+  .form-field input, .form-field textarea { color: var(--ink); }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: var(--ink-muted); }
+  .contact-email-row a { color: var(--sage); border-bottom-color: var(--sage-lt); }
+  .hero-headline { font-size: clamp(3rem, 6vw, 5.25rem); }
+  #form-success { color: var(--sage) !important; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 4% 3rem; }
+    .hero-right { align-items: flex-start; }
+    .pillars { padding: 3rem 4%; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .credibility { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 4%; }
+    .ps-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .service-list { grid-template-columns: 1fr; }
+    .pa-contact-prompt { flex-direction: column; align-items: flex-start; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .bio-section { grid-template-columns: 1fr; }
+    .bio-photo, .bio-photo-placeholder { width: 100%; max-width: 280px; }
+    .bio-creds { grid-template-columns: 1fr; }
+    .contact-page { padding: 4rem 4% 3rem; }
+    .practice-section { padding: 3rem 4%; }
+    .pa-hero { padding: 4rem 4% 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════ -->
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:999;background:#C9A84C;color:#0F0E0C;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 0.75rem;pointer-events:none;">Variant 2 — Dark &amp; Authoritative</div>
+<nav>
+  <span class="nav-wordmark" data-nav="home">CRADA LAW</span>
+  <ul class="nav-links">
+    <li><a data-nav="home" class="active" data-page="home">Home</a></li>
+    <li><a data-nav="practice" data-page="practice">Practice Areas</a></li>
+    <li><a data-nav="contact" data-page="contact">Start a conversation</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HOME PAGE
+════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Sarah Hestad &mdash; Patent Attorney &amp; Research Counsel</p>
+      <h1 class="hero-headline">Science&#8209;first<br><em>counsel.</em></h1>
+      <p class="hero-subline">For research, ownership, and commercialization.</p>
+      <p class="hero-body">I advise companies, faculty, inventors, and founders on the agreements and rights that shape how science moves forward.</p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-rule"></div>
+      <a class="hero-cta" data-nav="practice">Explore the practice &rarr;</a>
+      <a class="hero-cta" data-nav="contact">Discuss your matter &rarr;</a>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- PRACTICE PILLARS -->
+  <section class="pillars">
+    <p class="pillars-label">The work</p>
+    <div class="pillars-grid">
+
+      <div class="pillar-card">
+        <div class="pillar-number">01</div>
+        <h2 class="pillar-title">Government Research Agreements</h2>
+        <p class="pillar-body">For complex government research collaborations involving multiple parties, institutional constraints, and terms that need to hold under real-world pressure.</p>
+        <a class="pillar-link" data-nav="practice">See the full scope &rarr;</a>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-number">02</div>
+        <h2 class="pillar-title">Faculty, Inventor, and Founder Counsel</h2>
+        <p class="pillar-body">For faculty, inventors, and founders facing ownership, institutional, and agreement issues that shape what they can build next.</p>
+        <a class="pillar-link" data-nav="practice">See the full scope &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- CREDIBILITY BLOCK -->
+  <section class="credibility">
+    <div class="cred-left">
+      <p class="cred-label">The approach</p>
+      <h3 class="cred-heading">
+        <span>Patent attorney.</span>
+        <span>Engineer.</span>
+        <span>Former government attorney.</span>
+        <span>Former R1 university counsel.</span>
+      </h3>
+    </div>
+    <div class="cred-right">
+      <p class="cred-body">Most research delays aren&rsquo;t scientific. They&rsquo;re contractual. My approach is practical, collaborative, and grounded in how deals actually move. I help clients negotiate efficiently, solve problems, and keep important work from stalling on paper.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT STRIP -->
+  <div class="contact-strip">
+    <h2>Discuss your agreement.</h2>
+    <p>Describe your matter briefly and I&rsquo;ll follow up.</p>
+    <a class="btn-outline" data-nav="contact">Start a conversation</a>
+  </div>
+
+</div><!-- end home -->
+
+
+<!-- ═══════════════════════════════════════════
+     PRACTICE AREAS PAGE
+════════════════════════════════════════════ -->
+<div class="page" id="page-practice">
+
+  <div class="pa-hero">
+    <p class="pa-hero-label">Where I work</p>
+    <h1><em>The practice areas.</em></h1>
+  </div>
+
+  <!-- SECTION 1: GOVERNMENT RESEARCH AGREEMENTS -->
+  <section class="practice-section">
+    <div class="ps-header">
+      <h2 class="ps-title">Government Research Agreements</h2>
+      <p class="ps-intro">Most research delays are not scientific. They are contractual. I represent companies in complex government research collaborations where multiple parties, competing interests, and difficult terms all have to line up before the work can move forward.</p>
+    </div>
+    <ul class="service-list">
+      <li>Sponsor representation in CRADA drafting and negotiation</li>
+      <li>NCI cooperative group agreements for industry partners</li>
+      <li>Sponsored research agreements with universities</li>
+      <li>Material transfer agreements, subawards, and data use agreements</li>
+      <li>Issues affecting VA-affiliated nonprofit corporations and other research nonprofits</li>
+      <li>Consortia agreements and setup</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 2: FACULTY / INVENTOR / FOUNDER -->
+  <section class="practice-section">
+    <div class="ps-header">
+      <h2 class="ps-title">Faculty, Inventor, and Founder Counsel</h2>
+      <p class="ps-intro">You are building something valuable inside an institution with policies, templates, and committees. Universities have teams of attorneys. They do not work for the inventor. I do.</p>
+    </div>
+    <ul class="service-list">
+      <li>Ownership and rights analysis</li>
+      <li>Strategy around inventions, disclosures, and institutional claims</li>
+      <li>Consulting and license agreement negotiations</li>
+      <li>Spinout readiness and cleanup</li>
+      <li>Due diligence support</li>
+      <li>Patents, software, copyright, and data use agreements</li>
+    </ul>
+
+    <!-- FAQ ACCORDION -->
+    <div class="faq-section">
+      <p class="faq-label">Common questions</p>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>I made this outside the university. They did not fund it. Why are they involved at all?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-a">
+          <p class="faq-a-inner">This question comes up constantly. University involvement may be triggered by institutional policy, appointment terms, use of facilities or personnel, background rights, or prior agreements. Sometimes the university&rsquo;s claim is stronger than the inventor expects. Sometimes it is weaker. The point is to sort the facts early and understand options before positions harden.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>We are negotiating a license and I want to understand the terms.</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-a">
+          <p class="faq-a-inner">These agreements are not just administrative paperwork. They shape control, future flexibility, economic viability, diligence obligations, and the long-term value of the technology. If a company may be built around the asset, the license becomes one of the core documents shaping what that company can and cannot do.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>A company sent me a consulting or research agreement and the intellectual property section feels aggressive.</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-a">
+          <p class="faq-a-inner">That instinct is often right. Consulting and sponsored research agreements routinely reach further than they need to, especially around assignment, option rights, improvements, background technology, and future work. Small drafting choices in these documents can quietly give away leverage that is very hard to recover later.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>We are raising money and diligence is asking about university ownership and government rights.</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-a">
+          <p class="faq-a-inner">This is where old ambiguities stop being theoretical. Investors, partners, and acquirers want a clean story about ownership, institutional claims, government rights, and the documents behind them. If those issues were never sorted properly on the front end, diligence is usually when they surface in the most painful way.</p>
+        </div>
+      </div>
+
+    </div><!-- end faq-section -->
+  </section>
+
+  <!-- PA CONTACT PROMPT -->
+  <div class="pa-contact-prompt">
+    <div class="pa-cp-text">
+      <h3>Have an agreement or ownership issue to discuss?</h3>
+      <p>Describe your matter and I&rsquo;ll let you know how I can help.</p>
+    </div>
+    <a class="btn-sage" data-nav="contact">Discuss your matter</a>
+  </div>
+
+</div><!-- end practice -->
+
+
+<!-- ═══════════════════════════════════════════
+     CONTACT PAGE
+════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+
+  <div class="contact-page">
+    <p class="contact-label">Start a conversation</p>
+    <div class="contact-grid">
+
+      <div>
+        <h1 class="contact-headline">Start a conversation.</h1>
+        <p class="contact-intro">If you have a research, ownership, or commercialization matter, describe it briefly below. I&rsquo;ll follow up to let you know whether and how I can help.</p>
+        <p class="contact-email-row">Or email directly: <a href="/cdn-cgi/l/email-protection#53203221323b1330213237323f32247d303c3e"><span class="__cf_email__" data-cfemail="aeddcfdccfc6eecddccfcacfc2cfd980cdc1c3">[email&#160;protected]</span></a></p>
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" placeholder="Your name" autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" placeholder="you@example.com" autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label for="cf-org">Organization (optional)</label>
+            <input type="text" id="cf-org" placeholder="Company or institution">
+          </div>
+          <div class="form-field">
+            <label for="cf-msg">Message</label>
+            <textarea id="cf-msg" placeholder="Briefly describe your situation or question..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message</button>
+        </form>
+        <p id="form-success" style="display:none; margin-top:1rem; font-size:0.85rem; color:var(--sage);">Thank you — I&rsquo;ll be in touch soon.</p>
+      </div>
+
+      <div>
+        <p style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:1.25rem;">Background</p>
+        <!-- Photo pulled from cradalaw.com — swap with updated headshot if desired -->
+        <img src="Sarah.png" alt="Sarah Hestad" style="width:100%; max-width:320px; aspect-ratio:3/4; object-fit:cover; object-position:center top; display:block; margin-bottom:1.5rem; border-radius:2px;">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BIO SECTION -->
+  <div class="bio-section">
+    <div>
+      <!-- spacer on desktop, photo already above on mobile -->
+    </div>
+    <div class="bio-right">
+      <h2 class="bio-name">Sarah Hestad</h2>
+      <p class="bio-title-line">Founder, CRADA Law &mdash; Sarah Hestad Law, PLLC</p>
+      <div class="bio-body">
+        <p>I founded CRADA Law after spending 15 years working on research and intellectual property agreements from inside government, academia, and private practice. That perspective lets me see what&rsquo;s missing, what&rsquo;s misaligned, and what can stall a deal, hopefully before it does.</p>
+        <p>At the Department of Veterans Affairs, I drafted and negotiated hundreds of CRADAs, license agreements, and multi-site research collaborations. At the University of Arizona, I was Associate General Counsel, representing the institution in sponsored research, intellectual property, and licensing matters. I was lucky enough to be embedded with the tech transfer team, helping complex research move forward across academic, clinical, and industry settings.</p>
+        <p>I began my career at a top-tier international law firm where I had the opportunity to work for several years in Muscat, Oman. I later spent several years in private practice as a patent attorney. I worked with scientists, engineers, and physicians to translate their ideas into protected assets, and I&rsquo;ve been hooked ever since.</p>
+        <p>I believe in the work researchers do, and I want their contributions to make it through the legal machinery intact.</p>
+      </div>
+      <div class="bio-creds">
+        <div class="cred-block">
+          <h4>Education</h4>
+          <ul>
+            <li>J.D., Creighton University School of Law</li>
+            <li>B.S., Biosystems and Agricultural Engineering, University of Minnesota</li>
+          </ul>
+        </div>
+        <div class="cred-block">
+          <h4>Admissions</h4>
+          <ul>
+            <li>Arizona</li>
+            <li>USPTO Registered Patent Attorney</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end contact -->
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <p>CRADA Law is the trade name of Sarah Hestad Law, PLLC.<br>
+  Legal services provided by Sarah Hestad, Esq., licensed in Arizona and before the USPTO.<br>
+  This website is for informational purposes only and does not constitute legal advice or create an attorney-client relationship.</p>
+  <p><a href="/cdn-cgi/l/email-protection#394a584b5851795a4b585d5855584e175a5654"><span class="__cf_email__" data-cfemail="95e6f4e7f4fdd5f6e7f4f1f4f9f4e2bbf6faf8">[email&#160;protected]</span></a></p>
+</footer>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
+    var pg = document.getElementById('page-' + id);
+    if (pg) pg.classList.add('active');
+    var navLink = document.querySelector('[data-page="' + id + '"]');
+    if (navLink) navLink.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  document.querySelectorAll('[data-nav]').forEach(function(el) {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', function() {
+      showPage(el.getAttribute('data-nav'));
+    });
+  });
+
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.faq-item');
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  var form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      form.style.display = 'none';
+      var success = document.getElementById('form-success');
+      if (success) success.style.display = 'block';
+    });
+  }
+
+});
+</script>
+</body>
+</html>
