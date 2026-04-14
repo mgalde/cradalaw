@@ -1128,22 +1128,22 @@
         <p class="contact-intro">If you have a research, ownership, or commercialization matter, describe it briefly below. I will follow up to assess whether I can assist.</p>
         <p class="contact-email-row">Or email directly: <a href="mailto:sarah@cradalaw.com">sarah@cradalaw.com</a></p>
 
-        <form class="contact-form" onsubmit="handleSubmit(event)">
+        <form class="contact-form" action="https://formspree.io/f/xpqkwkor" method="POST" onsubmit="handleSubmit(event)">
           <div class="form-field">
             <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" placeholder="Your name" autocomplete="name">
+            <input type="text" id="cf-name" name="name" placeholder="Your name" autocomplete="name">
           </div>
           <div class="form-field">
             <label for="cf-email">Email</label>
-            <input type="email" id="cf-email" placeholder="you@example.com" autocomplete="email">
+            <input type="email" id="cf-email" name="email" placeholder="you@example.com" autocomplete="email">
           </div>
           <div class="form-field">
             <label for="cf-org">Organization (optional)</label>
-            <input type="text" id="cf-org" placeholder="Company or institution">
+            <input type="text" id="cf-org" name="organization" placeholder="Company or institution">
           </div>
           <div class="form-field">
             <label for="cf-msg">Message</label>
-            <textarea id="cf-msg" placeholder="Briefly describe your situation or question..."></textarea>
+            <textarea id="cf-msg" name="message" placeholder="Briefly describe your situation or question..."></textarea>
           </div>
           <button type="submit" class="btn-primary" style="margin-top:1.5rem; align-self:flex-start; font-family:inherit;">Send Message</button>
         </form>
@@ -1256,10 +1256,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
-  document.querySelector('.contact-form').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
+  const form = e.target;
+  const data = new FormData(form);
+  const response = await fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
+  if (response.ok) {
+    form.style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  } else {
+    alert('Something went wrong. Please try again or email sarah@cradalaw.com directly.');
+  }
 }
 </script>
 </body>
